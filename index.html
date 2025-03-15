@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G8</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            min-height: 100vh;
+            position: relative; /* Necesario para el pseudo-elemento */
+        }
+
+        /* Fondo con filtro oscuro */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('./pexels-franco30-3221297.jpg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1; /* Colocarlo detrás del contenido */
+        }
+
+        /* Menú hamburguesa */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        #menu:checked ~ nav {
+            transform: translateX(0);
+        }
+
+        /* Contenido principal */
+        .contenido {
+            text-align: center;
+            padding: 20% 20px;
+            animation: fadeIn 2s;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .boton-contacto {
+            background: linear-gradient(45deg, #000000, #873333);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .boton-contacto:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+        }
+
+        /* Formulario de contacto */
+        .contacto {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 50px auto;
+            max-width: 500px;
+            display: none;
+        }
+
+        .contacto input, .contacto textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contenido {
+                padding: 30% 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú -->
+    <input type="checkbox" id="menu" class="menu-toggle">
+    <label for="menu" class="menu-toggle">&#9776;</label>
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="contenido" id="inicio">
+        <h1>Letra a Letra: Alfabetización para la vida</h1>
+        <p>Proximamente...</p>
+        <button class="boton-contacto" onclick="mostrarContacto()">Contáctanos</button>
+    </div>
+
+    <!-- Formulario de contacto -->
+    <div class="contacto" id="formularioContacto">
+        <h2>Contacto</h2>
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Mensaje" rows="5" required></textarea>
+        <button class="boton-contacto" onclick="enviarMensaje()">Enviar</button>
+    </div>
+
+    <script>
+        // JavaScript
+        function mostrarContacto() {
+            document.getElementById('formularioContacto').style.display = 'block';
+            document.documentElement.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        function enviarMensaje() {
+            alert('¡Mensaje enviado con éxito!');
+            document.getElementById('formularioContacto').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
